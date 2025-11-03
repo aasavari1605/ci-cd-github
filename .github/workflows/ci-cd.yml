@@ -26,10 +26,10 @@ jobs:
         run: npm test
 
       - name: Build Docker image
-        run: docker build -t ASH1185/ci-cd-github:latest .
+        run: docker build -t ash1185/ci-cd-github:latest .
 
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "dckr_pat_rIoDTMJ4OnZSMmUOa7gUN4Zwop4" | docker login -u "ash1185" --password-stdin
 
       - name: Push image to Docker Hub
         run: docker push ash1185/ci-cd-github:latest
