@@ -29,7 +29,8 @@ jobs:
         run: docker build -t ash1185/ci-cd-github:latest .
 
       - name: Log in to Docker Hub
-        run: echo "dckr_pat_rIoDTMJ4OnZSMmUOa7gUN4Zwop4" | docker login -u "ash1185" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "ash1185" --password-stdin
+
 
       - name: Push image to Docker Hub
         run: docker push ash1185/ci-cd-github:latest
