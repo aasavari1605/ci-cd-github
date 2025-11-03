@@ -11,26 +11,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Run tests
       - name: Run tests
         run: npm test
 
+      # Step 5: Build Docker image
       - name: Build Docker image
-        run: docker build -t ash1185/ci-cd-github:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/ci-cd-github:latest .
 
+      # Step 6: Log in to Docker Hub securely
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "ash1185" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-
+      # Step 7: Push Docker image to Docker Hub
       - name: Push image to Docker Hub
-        run: docker push ash1185/ci-cd-github:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/ci-cd-github:latest
