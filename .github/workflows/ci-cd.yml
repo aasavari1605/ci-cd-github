@@ -33,6 +33,6 @@ jobs:
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "ash1185" --password-stdin
 
-      # ✅ Push image to Docker Hub
+      # ✅ Push image to Docker Hub w
       - name: Push image to Docker Hub
         run: docker push ash1185/ci-cd-github:latest
